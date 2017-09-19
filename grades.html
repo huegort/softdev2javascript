@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grades</title>
+</head>
+<body>
+<div>
+    <input type="text" id="inputText" onchange="textInputed()"/>
+</div>
+<div>
+    output: <span id="outputText"></span>
+</div>
+
+<script>
+    function textInputed(){
+        var input = document.getElementById("inputText").value;
+        console.log("got "+input);
+        var output
+        if (isNaN(input)){
+            output = "please enter a number";
+        }else if(input <0) {output = "Please enter a number greater than -1";
+        }else if(input <40) {output = "fail";
+        }else if(input < 55){output = "D";
+        }else if(input < 70){output = "C";
+        }else if(input < 85){output = "B";
+        }else if(input < 100){output = "A";
+        }else {output = "Please enter a number less than 100";
+        }
+        document.getElementById("outputText").innerHTML = output;
+    }
+</script>
+
+</body>
+</html>
