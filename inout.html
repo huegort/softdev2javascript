@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inout</title>
+</head>
+<body>
+
+<h1 > in out example</h1>
+
+<input type="text" id="inputText" onchange="inputEntered()" onkeypress="keyPressed()"/>
+<div> output <span id="nameHere"></span> </div>
+
+
+<script>
+
+    function inputEntered() {
+        console.log("inputEntered ran");
+        var input = document.getElementById("inputText").value;
+        var ans = input*2;
+        document.getElementById("nameHere").innerHTML = ans;
+    }
+    function keyPressed(){
+        console.log("keyPressed")
+    }
+</script>
+
+</body>
+</html>
