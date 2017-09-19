@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>variables</title>
+</head>
+<body>
+
+
+    <script>
+        var i=4;
+        var j="4";
+        var k="5";
+
+        console.log(k+i);
+
+        k=5;
+        console.log(k+i);
+
+
+        var student = {id:"G00123", name:"joe"};
+
+        console.log(student.id);
+        console.log(student);
+        console.log("the student is "+student);
+        // variables can be functions
+        var operation = function(x,y){return x+y;};
+
+        operation = function(x,y){return x*y;};
+        var ans= operation(4,5);
+        console.log(ans);
+
+        // lets revist the student
+        student.toString=function(){
+            return "student (id="+this.id+" name="+this.name+")";
+        }
+        console.log("the student is "+student);
+
+
+    </script>
+
+
+</body>
+</html>
