@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exercise01</title>
+</head>
+<body>
+<div>
+    <input id="inputText"/>
+</div>
+<div>
+    <button onclick="buttonClicked()">
+       click me
+    </button>
+</div>
+<div id="outputArea" style="display: none">
+    <h1>Output Text</h1>
+    <table>
+        <tr><th>what he types</th></tr>
+        <tr><td><span id="outputText"/></td></tr>
+    </table>
+
+</div>
+<script>
+    function buttonClicked(){
+        var inputElem = document.getElementById("inputText");
+        var input = inputElem.value;
+        inputElem.value = "";
+        document.getElementById("outputArea").style.display = 'block';
+        document.getElementById("outputText").innerHTML = input;
+    }
+</script>
+
+</body>
+</html>
