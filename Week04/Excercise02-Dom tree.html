@@ -1,0 +1,39 @@
+<!--
+Question 1
+Draw the dom tree for the html file below
+nodes have three things (TYPE, NAME, VALUE)
+there are 4 nodes types
+    1. elements (have type and name)
+    2. attribute nodes (deprecated, have type, name and value)
+    3. Text nodes (have type and value)
+    4. comment nodes (have type and value)
+
+    question 2 print contents of span
+    question 3 print text before span
+    question 4 print contents of comment
+-->
+
+<html>
+
+<body>
+<ul>
+    this is ul
+    <!-- this a comment -->
+    <li>1</li>
+    <li>hi <span id="name">mom</span></li>
+
+</ul>
+<script>
+    var spanNode = document.getElementById("name");
+    var ansText = spanNode.firstChild.nodeValue;
+    console.log("question 2:"+ansText);
+     ansText = spanNode.previousSibling.nodeValue;
+    console.log("question 3:"+ansText);
+    //ansText = spanNode.parentNode.parentNode.childNodes[1].nodeValue;
+    //ansText = spanNode.closest("ul").childNodes[1].nodeValue;
+    ansText = document.getElementsByTagName("ul")[0].childNodes[1].nodeValue
+    console.log("question 4:"+ansText);
+
+</script>
+</body>
+</html>

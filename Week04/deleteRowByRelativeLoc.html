@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delete a row by relative location</title>
+</head>
+<body>
+
+<h1>table to show deleting a row by relative location</h1>
+<table>
+
+    <tr><th>id</th><th>name</th><th>delete</th></tr>
+    <tr id ="asaldjf">
+        <td>1</td>
+        <td>joe</td>
+        <td><span style="background-color: red">
+            <button onclick="deleteRow(this)">
+                delete Me
+            </button>
+        </span>
+        </td>
+    </tr>
+    <tr><td>2</td><td>mick</td><td><button onclick="deleteRow(this)">delete Me</button></td></tr>
+    <tr><td>3</td><td>mary</td><td><button onclick="deleteRow(this)">delete Me</button></td></tr>
+    <tr><td>4</td><td>martha</td><td><button onclick="deleteRow(this)">delete Me</button></td></tr>
+    <tr><td>5</td><td>paul</td><td><button onclick="deleteRow(this)">delete Me</button></td></tr>
+    <tr><td>6</td><td>rick</td><td><button onclick="deleteRow(this)">delete Me</button></td></tr>
+</table>
+<script>
+    function deleteRow(thisElem){
+        var row = thisElem.closest("tr");
+        row.parentNode.removeChild(row);
+    }
+
+</script>
+</body>
+</html>
