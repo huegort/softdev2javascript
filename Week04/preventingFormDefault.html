@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>preventing default operation with form</title>
+</head>
+<body>
+
+<form>
+        some input <input id="doesNotMatter"/><br/>
+        <button onclick="doesNotExist()">with no function</button>
+    <button onclick="badButtonClicked()">bad</button>
+    <button onclick="goodButtonClicked(event)">simplest good</button>
+
+    <!-- these are just to show other ways of binding a button-->
+    <button id="goodButton1">good</button>
+    <button id="goodButton2">other good</button>
+</form>
+    <script>
+        function badButtonClicked(event){
+            console.log("bad button: but this does not output to console")
+        }
+        function goodButtonClicked(event){
+            event.preventDefault();
+            console.log("good button clicked")
+        }
+        // just for completion sake I have put in these two ways of binding a button
+
+        document.getElementById("goodButton1").addEventListener("click",
+            function (event){
+                event.preventDefault();
+                console.log("good button1: it worked")
+        });
+        document.getElementById("goodButton2").onclick= function (event){
+                event.preventDefault();
+                console.log("good button2: it worked")
+            };
+    </script>
+
+</body>
+</html>
