@@ -5,26 +5,30 @@
     <title>preventing default operation with form</title>
 </head>
 <body>
-
+<h1>working form</h1>
 <form>
-        some input <input id="doesNotMatter"/><br/>
+    some input <input id="doesNotMatter"/><br/>
+     <button onclick="goodButtonClicked(event)">click me</button>
+</form>
+<script> // this javascript would usually be at the bottom of the page
+    function goodButtonClicked(event){
+        event.preventDefault();
+        console.log("good button clicked")
+    }
+</script>
+<h1>other ways of doing and not doing it</h1>
+    <form>
+        some input <input id="doesNotMatter2"/><br/>
         <button onclick="doesNotExist()">with no function</button>
-    <button onclick="badButtonClicked()">bad</button>
-    <button onclick="goodButtonClicked(event)">simplest good</button>
+        <button onclick="badButtonClicked()">bad</button>
 
-    <!-- these are just to show other ways of binding a button-->
-    <button id="goodButton1">good</button>
-    <button id="goodButton2">other good</button>
+        <button id="goodButton1">good</button>
+        <button id="goodButton2">other good</button>
 </form>
     <script>
         function badButtonClicked(event){
             console.log("bad button: but this does not output to console")
         }
-        function goodButtonClicked(event){
-            event.preventDefault();
-            console.log("good button clicked")
-        }
-        // just for completion sake I have put in these two ways of binding a button
 
         document.getElementById("goodButton1").addEventListener("click",
             function (event){
