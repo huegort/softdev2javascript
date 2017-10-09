@@ -10,26 +10,36 @@
 
 enter a date
 <input type="date" id="aDate"/>
-    <div id="default-international"></div>
-    <div id="asString"></div>
-    <div id="local"></div>
 
-
+<div id="default-international"></div>
+<div id="asString"></div>
+<div id="local"></div>
+<div id="custom"></div>
 
 <script>
 
+    var months = ['jan','Feb','Mar','Apr',
+        'May','Jun','Jul','Aug',
+        'Sep','Oct','Nov','Dec'];
     populateExamples(new Date());
 
     function populateExamples(date){
         document.getElementById("default-international").innerHTML = date.toString();
         document.getElementById("asString").innerHTML = date.toDateString();
         document.getElementById("local").innerHTML = date.toLocaleString();
+        var niceFormat = ""+date.getDate()+"/"+months[date.getMonth()]+"/"+date.getFullYear();
+        document.getElementById("custom").innerHTML = niceFormat;
     }
 
     document.getElementById("aDate").onchange = function(){
         var dateString = document.getElementById("aDate").value;
+        console.log(dateString);
         var aDate = new Date(dateString);
+        //var lastOne = aDate;
+        var lastOne = new Date(aDate);
+        aDate.setDate(aDate.getDate()+30);
         populateExamples(aDate);
+        console.log(lastOne.toDateString());
     }
 </script>
 </body>
