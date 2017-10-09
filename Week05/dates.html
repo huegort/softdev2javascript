@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<h1>dfgf</h1>
+
+enter a date
+<input type="date" id="aDate"/>
+    <div id="default-international"></div>
+    <div id="asString"></div>
+    <div id="local"></div>
+
+
+
+<script>
+
+    populateExamples(new Date());
+
+    function populateExamples(date){
+        document.getElementById("default-international").innerHTML = date.toString();
+        document.getElementById("asString").innerHTML = date.toDateString();
+        document.getElementById("local").innerHTML = date.toLocaleString();
+    }
+
+    document.getElementById("aDate").onchange = function(){
+        var dateString = document.getElementById("aDate").value;
+        var aDate = new Date(dateString);
+        populateExamples(aDate);
+    }
+</script>
+</body>
+</html>
