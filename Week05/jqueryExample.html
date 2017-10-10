@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>jquery example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+regNumber <input type="text" name="reg"/><br/>
+make<input type="text" name="make"/><br/>
+model <select name="model">
+    <option value="ford">ford</option>
+    <option value="fiat">fiat</option>
+</select><br/>
+
+<button id="createButton"> create</button>
+
+<script>
+    $(function(){
+        $("#createButton").click(function(){
+            onCreate(this)
+        });
+    });
+
+
+    function onCreate(thisElem){
+       var car = {}
+        $("input, select").each(function (index) {
+           var input = $(this);
+           console.log('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
+            car[input.attr('name')] =  input.val();
+       })
+        console.log(car);
+    }
+
+</script>
+
+</body>
+</html>
