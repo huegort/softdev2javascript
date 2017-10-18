@@ -67,7 +67,12 @@ function update(request, response){
     console.log("update");
 }
 function create(request, response){
-    console.log("create");
+    var film = request.body.film;
+    console.log(film);
+    Film.create(film,function (err, film) {
+        if (err) return res.status(500).send("There was a problem adding the information to the database.");
+        res.status(200).send(film);
+    });
 }
 function remove(request, response){
     console.log("delete");
