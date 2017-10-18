@@ -8,7 +8,7 @@
 <body>
 
 <div id="carForm">
-    colour <input type="text" name="col"/><br/>
+    colour <input type="text" name="colour "/><br/>
     regNumber <input type="text" name="reg"/><br/>
     make<input type="text" name="make"/><br/>
     model <select name="model">
@@ -18,6 +18,7 @@
 
     <button id="createButton"> create</button>
 </div>
+<div id="debug"></div>
 <div id="carDisplay" style="display: none">
     <table id="carTable">
         <tr>
@@ -43,12 +44,14 @@
 
     function onCreate(thisElem){
        var car = {}
+       //car.toString=function(){return car.reg + " "+car.col;};
         $("#carForm input, #carForm select").each(function (index) {
            var input = $(this);
-           //console.log('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
+           console.log(' Name: ' + input.attr('name') + ' Value: ' + input.val());
             car[input.attr('name')] =  input.val();
        })
-        $("#carForm").hide();
+        //$("#carForm").hide();
+       //$("#debug").text(car);
         console.log(car);
        populateCarTable(car);
     }
@@ -59,13 +62,20 @@
         //var row = $("#carTable").insertRow(-1);
         var rowId = nextRowId++
         row.setAttribute("id", rowId);
-        $.each(car, function(key,val){
+       /* $.each(car, function(key,val){
             console.log("key : "+key+" ; value : "+val);
-            if(key != "col") {
+            if(key != "colour") {
                 var td = row.insertCell(-1);
                 td.innerHTML = val;
             }
-        });
+        });*/
+        var td = row.insertCell(-1);
+        td.innerHTML = car.regNum;
+        td = row.insertCell(-1);
+        td.innerHTML = car.make;
+        td = row.insertCell(-1);
+        td.innerHTML = car.model;
+
         $("#carDisplay").show();
     }
 
