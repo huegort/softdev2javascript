@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pong</title>
+</head>
+<body>
+<canvas id="board" width="400" height="400"></canvas>
+
+<script>
+    var options ={paddleY:2}
+var paddle1 = {x:10,y:100,vx:0,vy:0,w:10,h:40,
+    tickFunction:paddleTick,
+    drawFunction:paddleDraw,
+    keyFunction:paddleCheckKeyDown,
+    downKey:83,
+    upKey:87};
+
+    function paddleTick(canvas){
+        //console.log(this.vy);
+        this.y += this.vy;
+        if (this.y < 0-this.h){this.y= canvas.height;}
+        if (this.y > canvas.height){this.y= 0- this.h;}
+
+
+    }
+    function paddleDraw(canvas, ctx){
+        ctx.fillRect(this.x, this.y, this.w, this.h);
+    }
+    function paddleCheckKeyDown(key){
+        if (key == this.downKey){this.vy = options.paddleY;}
+        if (key == this.upKey){this.vy = -options.paddleY;}
+
+
+    }
+
+    function drawCanvas(){
+        var canvas = document.getElementById("board");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        paddle1.drawFunction(canvas, ctx);
+    }
+    function tickAll(){
+        var canvas = document.getElementById("board");
+        paddle1.tickFunction(canvas);
+        drawCanvas();
+    }
+    drawCanvas();
+    setInterval(tickAll,1000/60);
+    window.addEventListener("keydown",function(event){
+      console.log(event.keyCode);
+      var key = event.keyCode;
+      paddle1.keyFunction(key);
+    });
+    window.addEventListener("keyup",function(event){
+        console.log(event.keyCode);
+        var key = event.keyCode;
+        paddle1.vy = 0;
+        //if (key == paddle1.downKey){paddle1.vy = options.paddleY;}
+        //if (key == paddle1.upKey){paddle1.vy = -options.paddleY;}
+    });
+
+
+</script>
+
+</body>
+</html>
