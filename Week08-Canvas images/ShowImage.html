@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw a Line2</title>
+</head>
+<body>
+
+<canvas id="board" width="200" height="200"></canvas>
+
+<script>
+
+
+    var imageObj = new Image();
+    imageObj.src = "images/howl.png";
+
+    // When the image has been down loaded from ther server then draw it
+    imageObj.onload = function() {
+        drawCanvas();
+    };
+
+    function drawCanvas() {
+        console.log("drawing canvas "+imageObj.width);
+        var canvas = document.getElementById("board");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.drawImage(imageObj, 0, 0);
+
+    }
+
+
+    //setInterval(gameTick, 1000/60);
+</script>
+
+</body>
+</html>
