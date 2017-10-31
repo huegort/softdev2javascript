@@ -10,7 +10,7 @@ var wolf = {
         var baseImage = this.baseImage;
         ctx.drawImage(baseImage,this.x,this.y);
         //ctx.drawImage(currentImage,0,0,currentImage.width,currentImage.height,this.x,this.y, this.w, this.h);
-        drawguidelines
+        //drawguidelines
     },
     tick: function(canvas){
         console.log("wolf tick does nothing");
