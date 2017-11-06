@@ -7,11 +7,10 @@ var wolf = {
     ready:false,
     frameCount:0,
     speedFactor:5,
-    sprites : [[],[],[],[],[],[],[],[],[],[],[],[]],
+    sprites : [],
     imageUrl: "images/wolfsheet1.png",
     baseImage: new Image(),
     draw: function(ctx){
-        var baseImage = this.baseImage;
         //console.log("sprite "+this.currentSprite.row+","+this.currentSprite.col);
         //console.log("draw "+this.sprites[this.currentSprite.row][this.currentSprite.col]);
         if (this.ready) {
@@ -43,10 +42,11 @@ var wolf = {
             var spritew= 64;
             var spriteh = 32;
             for (var row=0;row<12;row++){
+                wolf.sprites[row] = []; // initialies the array in the array
                 for(var col=0;col<5;col++){
-                    //console.log("test2 "+col+":"+row);
-                    //console.log(tempCtx.getImageData(col*spritew, row*spriteh, spritew, spriteh));
-                    wolf.sprites[row][col] = tempCtx.getImageData(320+col*spritew, row*spriteh, spritew, spriteh);
+                    var  spriteX= 320+col*spritew;
+                    var spriteY =row*spriteh;
+                    wolf.sprites[row][col] = tempCtx.getImageData(spriteX, spriteY, spritew, spriteh);
                 }
             }
 
