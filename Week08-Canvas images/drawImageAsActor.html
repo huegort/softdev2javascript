@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Draw a Line2</title>
+    <title>wolf</title>
 </head>
 <body>
 
@@ -11,8 +11,10 @@
 <!--
 
 <script src="WolfSprite.js"></script>
--->
 <script src="wolfSimple.js"></script>
+<script src="SpriteSheetHack.js"></script>
+-->
+<script src="WolfSprite.js"></script>
 <script>
 
 
@@ -21,7 +23,12 @@
         var ctx = canvas.getContext("2d");
         wolf.draw(ctx);
     }
-    drawCanvas();
+    function tickAll(){
+        var canvas = document.getElementById("board");
+        drawCanvas();
+        wolf.tick(canvas);
+    }
+    setInterval(tickAll,1000/60);
 
     //setInterval(gameTick, 1000/60);
 </script>

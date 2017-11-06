@@ -12,7 +12,7 @@ var wolf = {
        // ctx.drawImage(currentImage,this.x,this.y);
        ctx.drawImage(this.currentImage,this.x,this.y, this.w, this.h);
         // or you can draw part of the source image (image, sx,sy,sw,sh,dx,dy,dw,dh)
-       //ctx.drawImage(currentImage,0,0,currentImage.width,currentImage.height,this.x,this.y, this.w, this.h);
+       //ctx.drawIm age(currentImage,0,0,currentImage.width,currentImage.height,this.x,this.y, this.w, this.h);
     },
     tick: function(canvas){
         console.log("wolf tick does nothing");
