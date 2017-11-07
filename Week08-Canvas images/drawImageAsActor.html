@@ -16,8 +16,6 @@
 -->
 <script src="WolfSprite.js"></script>
 <script>
-
-
     function drawCanvas() {
         var canvas = document.getElementById("board");
         var ctx = canvas.getContext("2d");
@@ -25,12 +23,11 @@
     }
     function tickAll(){
         var canvas = document.getElementById("board");
-        drawCanvas();
         wolf.tick(canvas);
+        drawCanvas();
     }
     setInterval(tickAll,1000/60);
 
-    //setInterval(gameTick, 1000/60);
 </script>
 
 </body>
