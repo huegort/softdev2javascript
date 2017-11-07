@@ -15,10 +15,15 @@ var wolf = {
         //console.log("draw "+this.sprites[this.currentSprite.row][this.currentSprite.col]);
         ctx.clearRect(0,0,400,400);
         if (this.ready) {
+            var scale = 3;
             var row = this.currentSprite.row;
             var col= this.currentSprite.col;
             var sprite = this.sprites[row][col];
-            ctx.drawImage(this.baseImage,sprite.sx,sprite.sy,sprite.sw,sprite.sh, this.x, this.y,this.w,this.h);
+            ctx.drawImage(this.baseImage,
+                sprite.sx,sprite.sy,
+                sprite.sw,sprite.sh,
+                this.x, this.y,
+                sprite.sw*scale,sprite.sh*scale);
         }
     },
     tick: function(canvas){
