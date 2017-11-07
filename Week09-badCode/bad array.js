@@ -1,4 +1,4 @@
-var images = {};
+var images ="joe";
 
 for (var i =0; i<10;i++){
     images[i]="var"+i;

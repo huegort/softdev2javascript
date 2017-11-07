@@ -1,7 +1,7 @@
 var wolf = {
     x:20,
     y:20,
-    w:100,
+    w:200,
     h:100,
     currentSprite :{col:1,row:4},
     ready:false,
@@ -13,10 +13,12 @@ var wolf = {
     draw: function(ctx){
         //console.log("sprite "+this.currentSprite.row+","+this.currentSprite.col);
         //console.log("draw "+this.sprites[this.currentSprite.row][this.currentSprite.col]);
+        ctx.clearRect(0,0,400,400);
         if (this.ready) {
             var row = this.currentSprite.row;
             var col= this.currentSprite.col;
-            ctx.putImageData(this.sprites[row][col], this.x, this.y,0,0,this.w,this.h);
+            var sprite = this.sprites[row][col];
+            ctx.drawImage(this.baseImage,sprite.sx,sprite.sy,sprite.sw,sprite.sh, this.x, this.y,this.w,this.h);
         }
     },
     tick: function(canvas){
@@ -33,13 +35,6 @@ var wolf = {
     initialise: function(){
 
         this.baseImage.onload = function() {
-            var tempCanvas = document.createElement('canvas');
-            tempCanvas.width = 640;
-            tempCanvas.height = 384;
-            var tempCtx = tempCanvas.getContext("2d");
-            console.log(this);
-            tempCtx.drawImage(this,0,0);
-            wolf.ready = true;
 
             var spritew= 64;
             var spriteh = 32;
@@ -48,9 +43,13 @@ var wolf = {
                 for(var col=0;col<5;col++){
                     var  spriteX= 320+col*spritew;
                     var spriteY =row*spriteh;
-                    wolf.sprites[row][col] = tempCtx.getImageData(spriteX, spriteY, spritew, spriteh);
+
+                    var sprite = {sx:spriteX,sy:spriteY,sw:spritew, sh:spriteh}
+                    wolf.sprites[row][col] = sprite
                 }
             }
+            wolf.ready = true;
+
 
         };
         console.log("test0");
