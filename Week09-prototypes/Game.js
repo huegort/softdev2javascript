@@ -23,7 +23,7 @@ Game.prototype={
     initialise: function(){
         // init all actors
         var tickFun= this.tickAll
-        var game = this;
+        var game = this; 
         for (var i= 0; i<10;i++){
             new Actor(game,30,30*i);
 
