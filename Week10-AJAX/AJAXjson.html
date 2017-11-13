@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<button id="callAjax">get bit coin info</button>
+
+<div id="result"> <span id="amount"></span><span id="symbol"></span></div>
+
+<script>
+    $(function(){
+        $("#callAjax").click(getRate())
+
+
+    });
+    function getRate(){
+        console.log("button clicked");
+        $.ajax({
+            url:"https://api.coindesk.com/v1/bpi/currentprice.json",
+            method:"GET",
+            dataType:"JSON",
+            success:function(result){
+                console.log("in success");
+                var bpi = result.bpi;
+                var euro = bpi.USD
+
+                $("#amount").html(euro.rate);
+                $("#symbol").html(euro.symbol);
+
+
+                //$("#result").html(JSON.stringify( euro));
+            },
+            error:function(){
+                console.log("error");
+            }
+        })
+    }
+    setInterval(getRate,1000);
+
+</script>
+
+
+</body>
+</html>

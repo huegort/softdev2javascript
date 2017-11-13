@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<button id="callAjax">click here to get page</button>
+
+<div id="result"> result goes here</div>
+
+<script>
+    $(function(){
+        $("#callAjax").click(function(){
+            console.log("button clicked");
+            $.ajax({
+                url:"blah.html",
+                dataType:"HTML",
+                success:function(result){
+                    console.log("in success");
+                    $("#result").html( result);
+                },
+                error:function(){
+                    console.log("error");
+                }
+            })
+        });
+
+    });
+
+</script>
+
+
+</body>
+</html>
