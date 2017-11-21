@@ -9,25 +9,83 @@
 
 </head>
 <body>
-<div id="output"></div>
+<input name="a1" style="width:10px" value="1"/>
+<input name="a2" style="width:10px" value="1"/>
+<input name="a3" style="width:10px" value="1"/>
+<input name="a4" style="width:10px" value="1"/>
+<input name="a5" style="width:10px" value="1"/>
+<input name="a6" style="width:10px" value="1"/>
+<button id="go">go</button>
+
+<div id="output1"></div>
+>3<div id="output2"></div>
 
 <script>
 
+    var network
+    function setupNet() {
+        network = new synaptic.Architect.Perceptron(6, 16, 2);
+        var trainingData = [
+            /*{input: [1, 1, 1, 1, 0, 0], output: [1,1]},
+            {input: [0, 1, 1, 1, 1, 1], output: [0,1]},
+            {input: [1, 1, 1, 1, 0, 1], output: [0,1]},
+            {input: [1, 0, 0, 0, 0, 0], output: [0,0]},
+            {input: [1, 1, 1, 0, 0, 1], output: [1,1]},
+            {input: [0, 0, 1, 0, 0, 0], output: [0,0]},
+            {input: [1, 1, 1, 0, 0, 0], output: [0,0]},
+            {input: [1, 1, 1, 1, 1, 1], output: [1,1]},
+            {input: [0, 0, 1, 1, 0, 0], output: [1,0]},
+            {input: [0, 0, 1, 0, 1, 0], output: [1,0]},
+            {input: [0, 0, 1, 0, 1, 1], output: [0,0]},
+            {input: [1, 1, 0, 1, 1, 1], output: [0,1]},
+            {input: [1, 1, 1, 0, 1, 1], output: [0,1]},
+            {input: [1, 1, 1, 1, 1, 0], output: [0,1]},
+            {input: [1, 1, 0, 0, 1, 1], output: [1,1]},*/
+        ];
 
-    function runNet(){
-        var network = new synaptic.Architect.Perceptron(4, 5, 1);
+        for (var i=0;i<64;i++){
+            var temp = i;
+            var input=[];
+            sum=0;
+            for (var j=0; j<6;j++){
+                input[j]= temp%2;
+                sum+=input[j];
+                temp = Math.floor(temp/2);
 
-//train the network with your known data
+            }
+           // console.log(JSON.stringify(input));
+            var even = (sum+1)%2;
+            var lots;
+            if (sum>3){
+                lots=1;
+            }else{
+                lots = 0;
+            }
+          trainingData.push({input:input, output:[even,lots]})
+        }
+        console.log(JSON.stringify(trainingData));
+
         var trainer = new synaptic.Trainer(network);
-        trainer.train([{input: [3,1,9,4], output: [6]}, {input: [9,5,18,3], output: [18]}]);
-
-//activate the network
-        var output = network.activate([1, 8, 4, 9]);
+        trainer.train(trainingData);
+        trainer.train(trainingData);
+    }
+    function doIt(){
+        input=[];
+        $('input').each(function(){
+            input.push(this.value);
+            console.log(JSON.stringify(input));
+        });
+        var output = network.activate(input);
         console.log(output);
-        $('#output').html(output);
+        var oddEven = "Even";
+        if(output[0]<=.5){oddEven ="Odd"}
+        $('#output1').html(oddEven);
+        $('#output2').html(output[1]);
     }
     $(function(){
-        runNet();
+        setupNet();
+        $('#go').click(doIt);
+
     })
 
 </script>
