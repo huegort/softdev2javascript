@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.1.4/synaptic.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<div id="output"></div>
+
+<script>
+
+
+    function runNet(){
+        var network = new synaptic.Architect.Perceptron(4, 5, 1);
+
+//train the network with your known data
+        var trainer = new synaptic.Trainer(network);
+        trainer.train([{input: [3,1,9,4], output: [6]}, {input: [9,5,18,3], output: [18]}]);
+
+//activate the network
+        var output = network.activate([1, 8, 4, 9]);
+        console.log(output);
+        $('#output').html(output);
+    }
+    $(function(){
+        runNet();
+    })
+
+</script>
+
+
+</body>
+</html>

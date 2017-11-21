@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.1.4/synaptic.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<div id="rateOutput"></div>
+
+<table id="historyTable">
+    <thead>
+        <tr>
+            <th>rate</th>
+            <th>diff</th>
+            <th>timeDiff</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+</table>
+
+<script>
+
+    var rateHistory = [];
+    var previousRate = {};
+    var trainingSet = [{input:[0,0,0],output:[0,0]}];
+
+
+    $(function(){
+        // initialise previous rate;
+        getRate(function(result,currentRate){
+
+            var rateTime = new Date(result.time.updated);
+            previousRate = currentRate;
+            previousRate.time = new Date();
+            previousRate.timeDiff = 0;
+            previousRate.diff = 0;
+
+            addToHistoryTable(previousRate, rateTime);
+            setInterval(tick,1000);
+            //tick();
+        });
+
+
+    })
+    function tick() {
+        //console.log("yo");
+        getRate(function(result,currentRate){
+            //console.log ("result:"+JSON.stringify(result));
+            var rateTime = new Date(result.time.updated);
+            var now = new Date();
+            //console.log("previousRate:"+previousRate.rate_float)
+            console.log(now.getTime());
+            if (currentRate.rate_float != previousRate.rate_float){
+                currentRate.time = now;
+                currentRate.timeDiff = (now - previousRate.time.getTime())/1000;
+                currentRate.diff = (currentRate.rate_float - previousRate.rate_float);
+                rateHistory.push(currentRate);
+                previousRate = currentRate;
+
+                previousRate.rate_float = currentRate.rate_float
+
+                addToTrainingSet(previousRate,currentRate,rateTime);
+
+                addToHistoryTable(currentRate, rateTime);
+
+            }
+
+        });
+
+    }
+
+    function runNet(){
+        var network = new synaptic.Architect.Perceptron(4, 5, 1);
+
+//train the network with your known data
+        var trainer = new synaptic.Trainer(network);
+        trainer.train([{input: [3,1,9,4], output: [6]}, {input: [9,5,18,3], output: [18]}]);
+
+//activate the network
+        var output = network.activate([1, 8, 4, 9]);
+        console.log(output);
+        $('#output').html(output);
+    }
+
+    function getRate(callback){
+        $.ajax({
+            async: false,
+            url:"https://api.coindesk.com/v1/bpi/currentprice.json",
+            method:"GET",
+            dataType:"JSON",
+            success:function(result){
+                //console.log("in success");
+                var bpi = result.bpi;
+                //console.log (JSON.stringify(result));
+                currentRate = bpi.USD;
+                $('#rateOutput').html(currentRate.rate+" "+currentRate.symbol)
+                callback(result,currentRate)
+                //console.log (JSON.stringify(currentRate));
+
+            },
+            error:function(){
+                console.log("error");
+            }
+        })
+    }
+    function addToHistoryTable(currentRate,rateTime){
+            $('#historyTable').find('tbody')
+                .prepend("<tr><td>"+
+                    currentRate.rate+
+                        "</td><td>"+
+                    currentRate.diff+
+                        "</td><td>"+
+                    currentRate.timeDiff+
+                        "</td></tr>");
+    }
+    function addToTrainingSet(previousRate,currentRate,rateTime){
+        var aSet = {};
+        var input = [];
+        var lastSet = trainingSet[trainingSet.length-1];
+
+        var lastInput = lastSet.input;
+        aSet.input = lastInput;
+        aSet.input.shift(); // take off the first 3
+        aSet.input.shift();
+        aSet.input.shift();
+        aSet.input.push(previousRate.rate_float);
+        aSet.input.push(previousRate.diff);
+        aSet.input.push(previousRate.timeDiff);
+        aSet.output = [currentRate.diff,currentRate.timeDiff];
+
+        console.log(JSON.stringify(aSet)+",");
+
+        trainingSet.push(aSet);
+
+
+
+
+
+    }
+
+</script>
+
+
+</body>
+</html>

@@ -7,12 +7,19 @@
   */
 var synaptic = require('synaptic'); // this line is not needed in the browser
 
-var network = new Architect.Perceptron(4, 5, 1);
+var network = new synaptic.Architect.Perceptron(4, 5, 1);
 
 //train the network with your known data
-var trainer = new Trainer(network);
-trainer.train([{input: [3,1,9,4], output [6]}, {input: [9,5,18,3], output: [18]}]);
+var trainer = new synaptic.Trainer(network);
+trainer.train([{input: [0,0,1,1], output: [1]},
+    {input: [0,0,0,0], output: [0]},
+    {input: [1,1,0,0], output: [1]},
+    {input: [1,1,1,1], output: [0]},
+
+
+]);
 
 //activate the network
-network.activate([1, 8, 4, 9]) ;
+var output = network.activate([0, 0, 1, 1]) ;
+ console.log(output);
 
