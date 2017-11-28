@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>WASD to move</h3>
+<canvas id="board"></canvas>
+
+<script src="Square.js"></script>
+<script src="Board.js"></script>
+<script src="Player.js"></script>
+
+<script>
+    var board = new Board();
+    var player = new Player(board,8,8,5)
+    board.debugPrint(player);
+    board.clearMovement();
+    board.calculateMovements(player);
+    board.debugPrint(player);
+
+    window.addEventListener('keydown', function(event){
+        console.log(event.keyCode);
+        if (player.handleKey(event.keyCode)){
+            board.clearMovement();
+            board.calculateMovements(player);
+
+            board.debugPrint(player);
+        }
+        console.log("can not move there");
+
+    })
+
+
+</script>
+
+</body>
+</html>
