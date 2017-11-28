@@ -9,16 +9,19 @@ Player = function(board,x,y,movement){
         40:down,
         37: left,
         39: right,
+        27: refresh
     }
 }
 
 Player.prototype.moveTo = function(square){
     if (this.energyLeft>= square.movementCost){
-        //this.energyLeft = this.energyLeft - square.movementCost;
+        this.energyLeft = this.energyLeft - square.movementCost;
         this.x = square.col;
         this.y = square.row;
+        console.log("energyleft "+ this.energyLeft)
         return true;
     }
+    console.log("in move to return false");
     return false;
 };
 Player.prototype.handleKey= function(keyCode){
@@ -48,4 +51,8 @@ function right(player){
         return player.moveTo(player.board.board[player.y][player.x+1]);
     }
     return false;
+}
+function refresh(player){
+    player.energyLeft = player.movement;
+    return true;
 }

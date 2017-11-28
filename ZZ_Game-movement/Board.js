@@ -11,12 +11,12 @@ var boardInitGrid= [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,2,1,9,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,1,4,4,4,1,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,4,4,1,1,1,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,4,1,1,4,4,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,1,4,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
 
 Board = function(){
@@ -45,7 +45,7 @@ Board.prototype.debugPrint = function(player){
             var currentSquare = this.board[row][col];
             if (row == player.y && col == player.x){
                 rowString+='O';
-            }else if (currentSquare.energyAtHere !==0){
+            }else if (currentSquare.energyAtHere > -1){
                 rowString += this.board[row][col].energyAtHere
             }else{
                 rowString += this.board[row][col].display
@@ -60,7 +60,7 @@ Board.prototype.clearMovement = function(){
     var numCols = this.numCols;
     for (var row = 0 ; row <numRows;row++){
         for (var col = 0; col<numCols; col++){
-            this.board[row][col].energyAtHere =0
+            this.board[row][col].energyAtHere =-1
         }
     }
 };
@@ -69,7 +69,7 @@ Board.prototype.calculateMovements = function(player){
     var squaresToPropagate = [];
     var moveToSquare;
     var board = this.board;
-    board[player.y][player.x].energyAtHere = player.movement;
+    board[player.y][player.x].energyAtHere = player.energyLeft;
     squaresToPropagate.push(board[player.y][player.x]);
     while (squaresToPropagate.length >0){
         currentSquare= squaresToPropagate.shift(); // takes first element from array
