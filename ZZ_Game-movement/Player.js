@@ -11,6 +11,7 @@ Player = function(board,x,y,movement){
         39: right,
         27: refresh
     }
+    this.rangeGrid = new RangeGrid(7);
 }
 
 Player.prototype.moveTo = function(square){

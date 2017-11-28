@@ -14,7 +14,7 @@ Square = function (type, row, col) {
     this.display = initSquareTypes[type][2];
 
     // for movement calculation
-    this.energyAtHere = 0;
+    this.energyAtHere = -1;
 
 }
 Square.prototype.canMoveTo = function(movesLeft){

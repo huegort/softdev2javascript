@@ -10,11 +10,13 @@
 
 <script src="Square.js"></script>
 <script src="Board.js"></script>
+<script src="RangeGrid.js">// needed before Player</script>
 <script src="Player.js"></script>
 
 <script>
     var board = new Board();
-    var player = new Player(board,8,8,5)
+    var player = new Player(board,8,8,5);
+
     board.debugPrint(player);
     board.clearMovement();
     board.calculateMovements(player);
