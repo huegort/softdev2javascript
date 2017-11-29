@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+<div id="form">
+    name<input name="name"/><br/>
+    score<input name="score"/><br/>
+    email<input name="email"/><br/>
+    <button>submit</button>
+
+</div>
+<div id="scores"></div>
+<script>
+
+    $(function(){
+        $("button").click(function() {
+            var name = $('input[name="name"]').val();
+            var score = $('input[name="score"]').val();
+            var email = $('input[name="email"]').val();
+            var hs = {name: name, score: score, email: email};
+            console.log(JSON.stringify(hs));
+            $.ajax({
+                url: "/highscore/submit",
+                method: "POST",
+                data: hs,
+                dataType: "JSON",
+                success: function (result) {
+                    console.log(JSON.stringify(result));
+                    displayHighScores();
+                },
+                error: function (xhr) {
+                    console.log("error in get "+ xhr.status + " " + xhr.statusText);
+                }
+            });
+        });
+    });
+    function displayHighScores(){
+        $.ajax({
+            url:"/highscore",
+            method:"GET",
+            dataType:"JSON",
+            success:function(result){
+                $('#scores').html(JSON.stringify(result));
+            },
+            error:function(){
+                console.log("error in display");
+            }
+        });
+    };
+    displayHighScores();
+</script>
+
+
+
+</body>
+</html>

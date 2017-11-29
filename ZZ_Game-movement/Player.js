@@ -1,4 +1,5 @@
 Player = function(board,x,y,movement){
+    console.log("player made2");
     this.board = board;
     this.x = x;
     this.y = y;
@@ -9,9 +10,10 @@ Player = function(board,x,y,movement){
         40:down,
         37: left,
         39: right,
-        27: refresh
+        32: refresh,
+        27: endTurn
     }
-    this.rangeGrid = new RangeGrid(7);
+   // this.rangeGrid = new RangeGrid(7);
 }
 
 Player.prototype.moveTo = function(square){
@@ -22,7 +24,6 @@ Player.prototype.moveTo = function(square){
         console.log("energyleft "+ this.energyLeft)
         return true;
     }
-    console.log("in move to return false");
     return false;
 };
 Player.prototype.handleKey= function(keyCode){
@@ -55,5 +56,9 @@ function right(player){
 }
 function refresh(player){
     player.energyLeft = player.movement;
+    return true;
+}
+function endTurn(player){
+    player.energyLeft = 0;
     return true;
 }

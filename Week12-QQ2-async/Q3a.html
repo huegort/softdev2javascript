@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,20 +9,21 @@
 <body>
 
 <button>Get External Content</button>
-
+<div id="result"></div>
 <script>
     $(function(){
         $("button").click(function(){
             $.ajax({
-                url: "blah.html",
+                url: "Q1.html",
                 dataType: "HTML",
                 success: function (result) {
+                    $('#result').html(result);
                     console.log("Ford");
                 }
             });
         });
         $.ajax({
-            url: "blah.html",
+            url: "Q1.html",
             dataType: "HTML",
             success: function (result) {
                 console.log("Honda");

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Q1</title>
+</head>
+<body>
+<table id="actionTable">
+    <tr><th>name</th><th>action</th></tr>
+    <tr><td>joe</td><td>
+        <button class="action">do action</button>
+    </td></tr>
+
+</table>
+<button id="create">create</button>
+
+
+<script>
+    function someFun(){
+        console.log("pear");
+    }
+    function actionClicked(){
+        console.log("doing action");
+    }
+    $(function(){
+        console.log("banana");
+        $('.action').click(function(){
+            actionClicked();
+        });
+        $('#create').click(function(){
+            console.log("create new");
+            $('#actionTable').append('<tr><td>joe</td><td>\n' +
+                '        <button onClick="actionClicked()">do action</button>\n' +
+                '    </td></tr>');
+
+        })
+
+    });
+    console.log("orange");
+    someFun();
+
+</script>
+
+</body>
+</html>
