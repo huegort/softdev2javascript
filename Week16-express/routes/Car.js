@@ -22,7 +22,23 @@ router.post('/create', function(req, res, next) {
     var car = req.body;
     // put into a database
     cars[car.id] = car;
-    res.sendFile("C:\\Users\\ITS\\WebstormProjects\\softdev2javascript\\Week16-express\\public\\index.html");
+    res.redirect("/displayCars.html");
+    //res.sendFile("C:\\Users\\ITS\\WebstormProjects\\softdev2javascript\\Week16-express\\public\\index.html");
+});
+router.post('/update', function(req, res, next) {
+    console.log(req.body);
+    var car = req.body;
+    // put into a database
+    cars[car.id] = car;
+    res.redirect("/displayCars.html");
+    //res.sendFile("C:\\Users\\ITS\\WebstormProjects\\softdev2javascript\\Week16-express\\public\\index.html");
+});
+router.delete('/:id', function(req, res, next) {
+    var id = req.param("id");
+    console.log("got param "+id);
+    delete cars[id];
+    res.setHeader('Content-Type', 'application/json');
+    res.send({success: true});
 });
 
 module.exports = router;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>update form</title>
+</head>
+<body>
+
+<select id="carIdSelect">
+    <option>Please select</option>
+
+</select>
+
+<form action="/car/update" method="POST">
+    id <input type="text" name="id"/><br/>
+    make <input type="text" name="make"/><br/>
+    model <input type="text" name="model"/><br/>
+    <input type="submit"/>
+</form>
+
+<script>
+    $(function(){
+        $.ajax({
+            url:'/car',
+            method:'GET',
+            data:{},
+            dataType:'JSON',
+            success:function(result){
+                console.log(JSON.stringify(result));
+                populateIdSelect(result);
+            },
+            error:function(a,b,c){
+                console.log("error "+a+"\n"+b+"\n"+c);
+            }
+        });
+    });
+    function populateIdSelect(result){
+        for (key in result) {
+            $('#carIdSelect').append("<option value='" + key + "'>" + key + "</option>");
+        }
+        $('#carIdSelect').change(function(){
+            var carId =  $('#carIdSelect').val();
+                //console.log("selected"+ carId);
+                $.ajax({
+                    url:'/car/'+carId,
+                    method:'GET',
+                    data:{},
+                    dataType:'JSON',
+                    success:function(result){
+                        //console.log(JSON.stringify(result));
+                        populateForm(result);
+                    },
+                    error:function(a,b,c){
+                        console.log("error "+a+"\n"+b+"\n"+c);
+                    }
+                });
+            });
+
+
+    }
+    function populateForm(result){
+        //console.log(JSON.stringify(result));
+        $("input[name='id']").val(result.id);
+        $("input[name='make']").val(result.make);
+        $("input[name='model']").val(result.model);
+    }
+
+
+
+
+</script>
+
+</body>
+</html>
