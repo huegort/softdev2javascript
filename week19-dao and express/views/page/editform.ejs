@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+<form action="/album/update" method="post">
+    id <input name="id" value = "<%= album.id %>"/><br/>
+    title <input name="title" value ="<%= album.title %>"/><br/>
+    artist <input name="artist" value ="<%= album.artist %>"/><br/>
+    <button> Update </button>
+    <br/>
+</form>
+
+</body>
+</html>

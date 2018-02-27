@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>all</title>
+</head>
+<body>
+
+    <h1> all</h1>
+    <a href="/createform.html"><button>create</button></a>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>artist</th>
+            <th>title</th>
+            <th>action</th>
+        </tr>
+        <% albums.forEach(function(album){%>
+            <tr id = "<%= album.id%>" >
+                <td><%= album.id %></td>
+                <td><%= album.artist %></td>
+                <td><%= album.title %></td>
+                <td>
+                    <a href="/album/editform/<%= album.id%>"><button>edit</button></a>
+
+                </td>
+            </tr>
+
+        <%})%>
+
+    </table>
+
+</body>
+</html>
