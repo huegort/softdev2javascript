@@ -1,4 +1,4 @@
-Actor = function(game,x, y){
+ Actor = function(game,x, y){
     this.game = game;
     this.x =x;
     this.y = y;
