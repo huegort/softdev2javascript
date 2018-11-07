@@ -51,8 +51,8 @@ var paddle1 = {x:10,y:100,vx:0,vy:0,w:10,h:40,
         this.x+=this.vx;
         this.y+= this.vy;
         // constaints
-        if (this.y < this.r){this.vy = Math.abs(this.vy);}
-        if (this.y >(canvas.height- this.r)){this.vy = -Math.abs(this.vy);}
+        if (this.y <= this.r){this.vy = Math.abs(this.vy);}
+        if (this.y >=(canvas.height- this.r)){this.vy = -Math.abs(this.vy);}
 
         if (this.x < 0 - this.r){
             this.x= 200;
@@ -96,7 +96,7 @@ var paddle1 = {x:10,y:100,vx:0,vy:0,w:10,h:40,
         ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
         ctx.fill();
     }
-    var score1 = {x:20, y:10,score:0,
+    var score1 = {x:20, y:10,re:0,
         draw:scoreDraw};
     var score2 = {x:320, y:10,score:0,
         draw:scoreDraw};
