@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+    <h1>The XMLHttpRequest Object</h1>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+<script>
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this.readyState+",status:"+this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp.open("GET", 'https://jsonplaceholder.typicode.com/todos?userId=10', true);
+        xhttp.send();
+        console.log("when does this come?");
+    }
+</script>
+
+</body>
+</html>
