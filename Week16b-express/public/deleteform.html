@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h1>Car</h1>
+
+    reg <input name="reg"/><br/>
+    <button id="delete">create</button><br/>
+
+
+<script>
+    $(function(){
+        $("#delete").click(function(){
+            var reg = $("input[name='reg']").val();
+            console.log("button clicked "+reg);
+            $.ajax({
+                url:"/car/"+reg,
+                method:"DELETE",
+                type:"JSON",
+                success:function (result) {
+                    console.log("in success");
+                    console.log(JSON.stringify(result));
+
+                }
+            })
+
+        });
+
+
+    })
+
+</script>
+
+</body>
+</html>
