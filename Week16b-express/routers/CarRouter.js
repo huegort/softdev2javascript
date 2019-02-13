@@ -9,26 +9,49 @@ var cars={
 
 
 router.get('/', function(req,res){
-    res.send(JSON.stringify(cars));
+    console.log("in get23");
+    res.set("Access-Control-Allow-Origin", "http://localhost:63342");
+    var returnArray = [];
+    for(key in cars) {
+        var value = cars[key];
+        returnArray.push(value);
+
+    }
+
+    res.send(returnArray);
 });
 
 router.get('/:id', function(req,res){
+    res.set("Access-Control-Allow-Origin", "http://localhost:63342");
+
     res.send(cars[req.param("id")]);
 });
 
 router.post('/create', function(req,res){
+    res.set("Access-Control-Allow-Origin", "http://localhost:63342");
+
     var car = req.body;
     cars[car.reg]=car;
     res.send("<html><body>car reg is " +car.reg+"</body></html>");
-})
+});
 router.post('/update', function(req,res){
+    res.set("Access-Control-Allow-Origin", "http://localhost:63342");
+
     var car = req.body;
     cars[car.reg]=car;
-    res.send("<html><body>car reg is " +car.reg+"</body></html>");
+    res.send({success:true});
+});
+router.get('/hi', function(req,res){
+    console.log("in hi");
+    res.send("hi");
 })
 router.delete('/:id', function(req,res){
-   console.log("in delete");
-    var id = req.param("id");
+    res.set("Access-Control-Allow-Origin", "http://localhost:63342");
+
+    console.log("in delete");
+
+
+     var id = req.param("id");
 
     delete cars[id];
     res.send({success:true});
