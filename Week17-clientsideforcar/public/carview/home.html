@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- make sure the server is running -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>cars</title>
+</head>
+<body>
+
+<h1>cars</h1>
+<button onclick="location.href='create.html';" id="create">create</button><br>
+<table id="display">
+    <tr>
+        <th>reg</th>
+        <th>make</th>
+        <th>model</th>
+        <th>update</th>
+        <th>delete</th>
+
+    </tr>
+
+</table>
+
+<div id="rowTemplate" style="display: none">
+    <table>
+        <tbody id="template">
+            <tr id="##REG">
+                <td>##REG</td>
+                <td>##MAKE</td>
+                <td>##MODEL</td>
+                <td><button onclick="callUpdate('##REG')">update</button></td>
+                <td><button onclick="callDelete('##REG')">delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(function(){
+       // get all contentes for the table
+            $.ajax({
+                url:"http://localhost:3003/car/",
+                method:"GET",
+                dataType:"JSON",
+                success:function (result) {
+
+                    for (var i in result){
+                        addRowToTable(result[i]);
+
+                    }
+                    console.log(JSON.stringify(result));
+                }
+            })
+    });
+    function addRowToTable(car){
+        var templateRow = $('#template').html();
+        templateRow= templateRow.replace(/##REG/g,car.reg);
+        templateRow= templateRow.replace(/##MAKE/g,car.make);
+        templateRow= templateRow.replace(/##MODEL/g,car.model);
+        //console.log(car);
+        $('#display tr:last').after(templateRow);
+    }
+    function callDelete(reg){
+        $.ajax({
+            url:"http://localhost:3003/car/"+reg,
+            method:"DELETE",
+            datatype:"JSON",
+            success:function (result) {
+                alert("car deleted");
+                // now delete from table
+                $('#'+reg).remove();
+            }
+        })
+    }
+    function callUpdate(reg){
+        location.href='update.html?reg='+reg;
+    }
+
+</script>
+
+
+</body>
+</html>

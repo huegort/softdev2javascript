@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- this looks vary like the create.... do you think they could use the same html?-->
+
+    <!-- this could be populated by the server see later-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='carForm'>
+    reg <input type="text" name="reg"><br/>
+    make <input type="text" name="make"><br/>
+    model <input type="text" name="model"><br/>
+    <button id="doIt">Update</button>
+
+</div>
+
+
+
+
+<script>
+    $(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const reg = urlParams.get('reg');
+        const mode = urlParams.get('mode');
+
+        if (mode == "create") {
+            $('#doIt').html("Create");
+            $('#doIt').click(function () {
+                console.log("calling create");
+                var car = getDataFromForm();
+                $.ajax({
+                    url: "http://localhost:3003/car/create",
+                    method: "POST",
+                    data: car,
+                    datatype: "JSON",
+                    success: function (result) {
+                        console.log("create")
+                        location.href = 'home.html';
+                    }
+                });
+            })
+
+
+        } else {// update
+            $('input[name="reg"]').prop('disabled', true);
+            $.ajax({
+                url: "http://localhost:3003/car/" + reg,
+                method: "GET",
+                datatype: "JSON",
+                success: function (result) {
+                    console.log("in success");
+                    console.log(JSON.stringify(result));
+                    $('input[name="reg"]').val(result.reg);
+                    $('input[name="make"]').val(result.make);
+                    $('input[name="model"]').val(result.model);
+
+                    $('#doIt').click(function () {
+                        console.log("calling update")
+                        var car = getDataFromForm();
+                        $.ajax({
+                            url: "http://localhost:3003/car/update",
+                            method: "POST",
+                            data: car,
+                            datatype: "JSON",
+                            success: function (result) {
+                                console.log("updated")
+                                location.href = 'home.html';
+                            }
+                        });
+
+                    })
+
+                }
+            });
+        }
+    })
+    function getDataFromForm(){
+        var car = {};
+        car.reg = $('input[name="reg"]').val();
+        car.make = $('input[name="make"]').val();
+        car.model = $('input[name="model"]').val();
+        return car;
+    }
+
+    </script>
+
+</body>
+</html>
