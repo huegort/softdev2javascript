@@ -24,5 +24,5 @@ var wolf = {
         this.baseImage.src = this.imageUrl;
 
     }
-}
+};
 wolf.initialise();

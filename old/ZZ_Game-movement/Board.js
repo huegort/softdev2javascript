@@ -17,14 +17,14 @@ var boardInitGrid= [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,4,1,1,4,4,4,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,1,1,4,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
 
 Board = function(){
     this.numRows = boardInitGrid.length;
     this.numCols = boardInitGrid[0].length;
     this.board = [];
     this.initBoard();
-}
+};
 Board.prototype.initBoard = function(){
     console.log("about to init");
     var numRows = this.numRows;
@@ -35,12 +35,12 @@ Board.prototype.initBoard = function(){
             this.board[row][col] = new Square(boardInitGrid[row][col],row,col);
         }
     }
-}
+};
 Board.prototype.debugPrint = function(player){
     var numRows = this.numRows;
     var numCols = this.numCols;
     for (var row = 0 ; row <numRows;row++){
-        var rowString =""
+        var rowString ="";
         for (var col = 0; col<numCols; col++){
             var currentSquare = this.board[row][col];
             if (row == player.y && col == player.x){

@@ -10,5 +10,5 @@ var studentDAO= {
         var sql = "select * from student;";
         daoHelper.callSQL(sql,[],"getAll",callback);
     }
-}
+};
 module.exports = studentDAO;

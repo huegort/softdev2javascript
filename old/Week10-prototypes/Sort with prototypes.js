@@ -1,7 +1,7 @@
 Person = function(name, age){
     this.name = name;
     this.age = age;
-}
+};
 
 people = [];
 
@@ -20,6 +20,6 @@ people.sort(function(a,b){
     if (a.age>b.age)
         return 1;
     return 0
-})
+});
 
 console.log("sorted"+JSON.stringify(people));

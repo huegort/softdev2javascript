@@ -12,7 +12,6 @@ function testTick() {
         tick();
         console.log(imageCount);
     }
-    ;
 }
 testTick();
 

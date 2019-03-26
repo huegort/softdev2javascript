@@ -26,6 +26,6 @@ var albumDAO = {
         daoHelper.callSql(sql,[id],"delete", callback);
     }
     // other functions here
-}
+};
 
 module.exports = albumDAO;

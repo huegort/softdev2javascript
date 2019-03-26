@@ -14,13 +14,13 @@ router.post("/create", function(req,res){
     albumDAO.insert(album, function(result){
         res.redirect("/album/albums");
     })
-})
+});
 router.post("/update", function(req,res){
     var album = req.body;
     albumDAO.update(album, function(result){
         res.redirect("/album/albums");
     })
-})
+});
 router.post("/delete/:id", function(req,res){
     var id = req.param("id");
     albumDAO.delete(id, function(result){
@@ -44,7 +44,7 @@ router.get("/albums", function(req,res){
             {albums: albums})
     })
 
-})
+});
 
 
 

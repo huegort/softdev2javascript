@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="createForm">
+    username
+    <br/>
+    <input type="text" name="username"/>
+    <br/>
+    password
+    <br/>
+    <input type="password" name="password"/>
+    <br/>
+    <button id="go">Create</button>
+</div>
+<script>
+    $(function(){
+        $('#go').click(function(){
+            var user = {}
+            user.username = $('input[name="username"]').val();
+            user.password = $('input[name="password"]').val();
+            //console.log(JSON.stringify(user));
+            $.ajax({
+                url:'user/create',
+                method:'POST',
+                data:user,
+                datatype:'JSON',
+                success:function(result){
+                    location.href="user.html";
+                },
+                error:function(err,result){
+                    console.log("error"+err);
+                }
+            })
+        })
+    })
+
+</script>
+
+</body>
+</html>

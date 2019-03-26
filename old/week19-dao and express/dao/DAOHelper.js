@@ -10,7 +10,7 @@ var daoHelper={
             })
         })
     }
-}
+};
 
 function getConnection(){
     return mysql.createConnection({

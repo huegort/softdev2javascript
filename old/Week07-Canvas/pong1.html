@@ -8,7 +8,7 @@
 <canvas id="board" width="400" height="400"></canvas>
 
 <script>
-    var options ={paddleY:2}
+    var options ={paddleY:2};
 var paddle1 = {x:10,y:100,vx:0,vy:0,w:10,h:40,
     tick:paddleTick,
     draw:paddleDraw,
@@ -96,7 +96,7 @@ var paddle1 = {x:10,y:100,vx:0,vy:0,w:10,h:40,
         ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
         ctx.fill();
     }
-    var score1 = {x:20, y:10,re:0,
+    var score1 = {x:20, y:10,score:0,
         draw:scoreDraw};
     var score2 = {x:320, y:10,score:0,
         draw:scoreDraw};

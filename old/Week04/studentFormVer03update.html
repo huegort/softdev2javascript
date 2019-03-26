@@ -79,7 +79,7 @@ function populateUpdateForm(student, rowId){
         button.onclick = function(){
             console.log("update clicked "+rowId);
             var student = {};
-            student.id      = document.getElementById("studentId").value
+            student.id      = document.getElementById("studentId").value;
             student.name    = document.getElementById("studentName").value;
             console.log(student);
             updateRow(student, rowId);

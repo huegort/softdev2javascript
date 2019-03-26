@@ -11,7 +11,7 @@ var studentDAO = {
         daoHelper.callSql(sql,[student.id, student.firstname, student.age],"getall", callback);
 
     }
-}
+};
 
 module.exports= studentDAO;
 

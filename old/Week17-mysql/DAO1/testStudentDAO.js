@@ -8,4 +8,4 @@ studentDAO.create(student, function(result){
 studentDAO.getAll(function(result){
     //res.send(result);
     console.log(JSON.stringify(result));
-})
+});

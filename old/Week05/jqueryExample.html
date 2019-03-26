@@ -43,13 +43,13 @@
 
 
     function onCreate(thisElem){
-       var car = {}
+       var car = {};
        //car.toString=function(){return car.reg + " "+car.col;};
         $("#carForm input, #carForm select").each(function (index) {
            var input = $(this);
            console.log(' Name: ' + input.attr('name') + ' Value: ' + input.val());
             car[input.attr('name')] =  input.val();
-       })
+       });
         //$("#carForm").hide();
        //$("#debug").text(car);
         console.log(car);
@@ -60,7 +60,7 @@
         var carTable = $("#carTable")[0];
         var row = carTable.insertRow(-1);
         //var row = $("#carTable").insertRow(-1);
-        var rowId = nextRowId++
+        var rowId = nextRowId++;
         row.setAttribute("id", rowId);
        /* $.each(car, function(key,val){
             console.log("key : "+key+" ; value : "+val);

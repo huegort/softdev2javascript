@@ -49,7 +49,7 @@
         });
 
 
-    })
+    });
     function tick() {
         //console.log("yo");
         getRate(function(result,currentRate){
@@ -65,7 +65,7 @@
                 rateHistory.push(currentRate);
                 previousRate = currentRate;
 
-                previousRate.rate_float = currentRate.rate_float
+                previousRate.rate_float = currentRate.rate_float;
 
                 addToTrainingSet(previousRate,currentRate,rateTime);
 
@@ -101,7 +101,7 @@
                 var bpi = result.bpi;
                 //console.log (JSON.stringify(result));
                 currentRate = bpi.USD;
-                $('#rateOutput').html(currentRate.rate+" "+currentRate.symbol)
+                $('#rateOutput').html(currentRate.rate+" "+currentRate.symbol);
                 callback(result,currentRate)
                 //console.log (JSON.stringify(currentRate));
 

@@ -41,7 +41,7 @@ Ball.prototype.tick = function(){
     }
 
 
-}
+};
 Ball.prototype.draw = function(){
     var ctx = this.ctx;
     ctx.beginPath();
@@ -49,4 +49,4 @@ Ball.prototype.draw = function(){
     ctx.fillStyle= this.color;
 console.log(this.color);
     ctx.fill();
-}
+};

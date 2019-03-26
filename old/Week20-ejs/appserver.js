@@ -14,7 +14,7 @@ app.use("/testEJS",testEJSRouter);
 
 
 var server = app.listen(3003, function () {
-    var port = server.address().port
+    var port = server.address().port;
 
     console.log("Example app listening at :%s",  port)
-})
+});

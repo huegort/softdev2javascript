@@ -40,5 +40,5 @@ var wolf = {
             this.ready = true;
         };
     }
-}
+};
 wolf.initialise();

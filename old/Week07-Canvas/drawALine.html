@@ -31,11 +31,11 @@
         if (event.keyCode == 37) {actor.x--;}
         if (event.keyCode == 39) {actor.x++;}
 
-    }
+    };
     document.getElementById("board").onmousedown = function(event){
         console.log(event.x);
         actor.x= event.x;
-    }
+    };
     function gameTick(){
         actor.y++;
         if (actor.y > 200){actor.y = -50;}

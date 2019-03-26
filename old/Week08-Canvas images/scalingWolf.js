@@ -49,7 +49,7 @@ var wolf = {
                     var  spriteX= 320+col*spritew;
                     var spriteY =row*spriteh;
 
-                    var sprite = {sx:spriteX,sy:spriteY,sw:spritew, sh:spriteh}
+                    var sprite = {sx:spriteX,sy:spriteY,sw:spritew, sh:spriteh};
                     wolf.sprites[row][col] = sprite
                 }
             }
@@ -61,5 +61,5 @@ var wolf = {
         this.baseImage.src = this.imageUrl;
 
     }
-}
+};
 wolf.initialise();

@@ -13,7 +13,7 @@ var DAOHelper = {
             });
         });
     }
-}
+};
 function getConnection() {
     return mysql.createConnection({
         host: 'localhost',

@@ -23,6 +23,6 @@ people.sort(function(a,b){
     if (a.age>b.age)
         return 1;
     return 0
-})
+});
 
 console.log("sorted"+JSON.stringify(people));

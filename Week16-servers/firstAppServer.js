@@ -14,7 +14,7 @@ http.createServer( function (request, response) {
     console.log("Request for " + pathname + " received.");
     if (pathname=="/") pathname+=options.defaultPage;
 
-    console.log("gettting file: "+options.docroot+ pathname)
+    console.log("gettting file: "+options.docroot+ pathname);
 
     if (pathname == "/cars"){
         displayAllCars(request,response);

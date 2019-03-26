@@ -14,14 +14,14 @@ Player = function(board,x,y,movement){
         27: endTurn
     }
    // this.rangeGrid = new RangeGrid(7);
-}
+};
 
 Player.prototype.moveTo = function(square){
     if (this.energyLeft>= square.movementCost){
         this.energyLeft = this.energyLeft - square.movementCost;
         this.x = square.col;
         this.y = square.row;
-        console.log("energyleft "+ this.energyLeft)
+        console.log("energyleft "+ this.energyLeft);
         return true;
     }
     return false;
@@ -29,7 +29,7 @@ Player.prototype.moveTo = function(square){
 Player.prototype.handleKey= function(keyCode){
     console.log("in handle"+ keyCode);
     return this.keys[keyCode](this);
-}
+};
 function up(player){
     if (player.y > 0){
         return player.moveTo(player.board.board[player.y-1][player.x]);

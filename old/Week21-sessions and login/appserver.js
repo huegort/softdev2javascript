@@ -23,13 +23,13 @@ app.all('/*', function(req,res, next){
     }else{
         res.redirect('/login.html');
     }
-})
+});
 
 app.use("/testSession",testSessionRouter);
 
 
 var server = app.listen(3003, function () {
-    var port = server.address().port
+    var port = server.address().port;
 
     console.log("Example app listening at :%s",  port)
-})
+});

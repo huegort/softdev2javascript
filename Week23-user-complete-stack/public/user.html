@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>User Admin</title>
+</head>
+<body>
+
+<a href="createuser.html"><button id="create">Create</button></a>
+
+<div>
+<table id="allUsers">
+    <tr><th>username</th><th>update</th><th>delete</th></tr>
+
+
+
+</table>
+</div>
+<div id="rowTemplate" style="display: none">
+    <table>
+        <tbody id="template">
+        <tr id="##username">
+            <td>##username</td>
+            <td><button onclick="callUpdate('##username')">update</button></td>
+            <td><button onclick="callDelete('##username')">delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+$(function(){
+
+    $.ajax({
+            url:'user/',
+            method:'GET',
+            data:{},
+            datatype:'JSON',
+            success:function(result){
+                users = result;
+                for (var i in users){
+                    addToTable(users[i]);
+                }
+            },
+            error:function(err,result){
+                console.log("error"+err);
+            }
+        })
+
+
+
+
+
+    // populate the table
+})
+function addToTable(user){
+    var row = $('#template').html();
+    row = row.replace(/##username/g,user.username);
+
+    $('#allUsers tr:last').after(row);
+
+}
+function callUpdate(username){
+    location.href='updateuser.html?username='+username;
+}
+function callDelete(username){
+    // call ajax delete
+    $('#'+username).remove();
+     $.ajax({
+        url:'user/'+username,
+        method:'DELETE',
+        datatype:'JSON',
+        success:function(result){
+
+        },
+        error:function(err,result){
+            console.log("error"+err);
+        }
+    })
+
+
+}
+</script>
+
+</body>
+</html>

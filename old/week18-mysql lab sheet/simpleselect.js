@@ -24,5 +24,5 @@ con.connect(function(err){
         //con.close;
     });
     console.log("got connection!!!!");
-})
+});
 console.log("all seams ok!!!");

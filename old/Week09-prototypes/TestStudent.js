@@ -1,7 +1,7 @@
 Student = function(firstName){
-    this.grade="F"
+    this.grade="F";
     this.firstName = firstName;
-}
+};
 
 
 Student.prototype={

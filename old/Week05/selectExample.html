@@ -27,14 +27,14 @@ Select a mammal
         horse:["shetland","Arab"],
         monkey:["Chimp","Oranutan"],
         donkey:["Shrek's one","some other"],
-    }
+    };
 
     selectElem.value="dog";
 
     selectElem.onchange= function(){
         console.log(selectElem.value);
         populateBreeds(selectElem.value);
-    }
+    };
 
     function populateBreeds(species){
         var breedsElem = document.getElementById("breeds");

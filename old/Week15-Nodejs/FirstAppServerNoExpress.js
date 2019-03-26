@@ -5,12 +5,12 @@ var fs = require('fs');
 var options = {
     docroot :"public/",
     defaultPage :"index.html"
-}
+};
 var routes= {
     GET: [{route: "/car", processingFunction: displayAllCars},
         {route: "/films", processingFunction: displayAllFilms},
     ]
-}
+};
 
 var server = http.createServer( function (request, response) {
     var parsedUrl = url.parse(request.url);

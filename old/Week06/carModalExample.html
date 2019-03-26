@@ -69,7 +69,7 @@
             closeAndCleanCreateUpdateModal();
         });
         $(".updateButton").click(function(event){
-            console.log("update clicked")
+            console.log("update clicked");
             var row = $(this).closest("tr");
             var car = getCarFromRow(row);
             populateCreateUpdateForm(car);

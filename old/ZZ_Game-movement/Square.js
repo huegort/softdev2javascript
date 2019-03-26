@@ -4,7 +4,7 @@ var initSquareTypes= {
     3:['Trees',4,'|'],
     4:['marsh',7,'~'],
     9:['Cliff',99,'X'],
-}
+};
 
 Square = function (type, row, col) {
     this.row = row;
@@ -16,7 +16,7 @@ Square = function (type, row, col) {
     // for movement calculation
     this.energyAtHere = -1;
 
-}
+};
 Square.prototype.canMoveTo = function(movesLeft){
     return (movesLeft>= this.movementCost);
-}
+};

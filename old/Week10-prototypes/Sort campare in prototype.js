@@ -9,7 +9,7 @@ Person = function(name, age){
             return 1;
         return 0
     };
-}
+};
 
 people = [];
 
@@ -22,6 +22,6 @@ people.push (new Person("end one", 6)); // push will add to the end of the array
 
 console.log("unsorted"+JSON.stringify(people));
 
-people.sort(Person.compareAge)  // use the the function in the prototype
+people.sort(Person.compareAge);  // use the the function in the prototype
 
 console.log("sorted"+JSON.stringify(people));

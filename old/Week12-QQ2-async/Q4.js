@@ -12,7 +12,7 @@ var studentDAO= {
             if(callback)callback(result);
         });
     });
-};
+ }
 function findById(id,callback){
     var con = getConnection();
     con.connect(function (err) {
@@ -23,10 +23,10 @@ function findById(id,callback){
             if(callback)callback(result);
         });
     });
-};
+}
 dao.getAll(function(result){
     console.log("Gandalf");
-})
+});
 dao.findById(function(result){
     console.log("Bilbo");
-})
+});

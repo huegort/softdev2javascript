@@ -10,7 +10,7 @@ http.createServer( function (request, response) {
     console.log("Request for " + pathname + " received.");
     if (pathname=="/") pathname+=options.defaultPage;
 
-    console.log("gettting file: "+options.docroot+ pathname)
+    console.log("gettting file: "+options.docroot+ pathname);
 
     fs.readFile(options.docroot+pathname, function (err, data) {
         if (err) {

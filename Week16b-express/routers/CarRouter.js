@@ -5,7 +5,7 @@ var cars={
     "99mo123":{reg:"99mo123",make:"ford",model:"modeo"},
     "171mo123":{reg:"171mo123",make:"ford",model:"modeo"},
     "182mo123":{reg:"182mo123",make:"ford",model:"modeo"}
-}
+};
 
 
 router.get('/', function(req,res){
@@ -44,7 +44,7 @@ router.post('/update', function(req,res){
 router.get('/hi', function(req,res){
     console.log("in hi");
     res.send("hi");
-})
+});
 router.delete('/:id', function(req,res){
     res.set("Access-Control-Allow-Origin", "http://localhost:63342");
 
@@ -55,7 +55,7 @@ router.delete('/:id', function(req,res){
 
     delete cars[id];
     res.send({success:true});
-})
+});
 
 
 module.exports=router;
