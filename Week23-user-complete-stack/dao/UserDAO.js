@@ -23,7 +23,11 @@ var userDAO ={
         daoHelper.callSql(sql, data,"delete",callback);
 
     },
-    validateUser:function(user,callBack){
+    validateUser:function(user,callback){
+        var sql = "select * from user where username =? and password = MD5(?);";
+        var data = [user.username, user.password];
+        daoHelper.callSql(sql, data,"delete",callback);
+
 
     }
 
