@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+
 app.use("/user", userRouter);
 app.use(express.static('public'));
 
